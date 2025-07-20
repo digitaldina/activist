@@ -13,7 +13,7 @@ afterEach(() => {
 });
 
 const signInMock = vi.fn();
-registerEndpoint("http://localhost:8000/v1/auth/sign_in/", {
+registerEndpoint("http://localhost:8000/v1/auth/sign_in", {
   method: "POST",
   handler: signInMock,
 });
@@ -38,8 +38,9 @@ describe("sign-in", () => {
     await fireEvent.update(passwordInput, "password");
 
     const submitButton = screen.getByRole("button", {
-      name: getEnglishText("i18n._global.sign_in_aria_label"),
+      name: getEnglishText("i18n.components.submit_aria_label"),
     });
+
     await fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -72,7 +73,7 @@ describe("sign-in", () => {
     await fireEvent.update(passwordInput, "password");
 
     const submitButton = screen.getByRole("button", {
-      name: getEnglishText("i18n._global.sign_in_aria_label"),
+      name: getEnglishText("i18n.components.submit_aria_label"),
     });
     await fireEvent.click(submitButton);
 

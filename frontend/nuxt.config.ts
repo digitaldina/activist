@@ -32,10 +32,6 @@ export default defineNuxtConfig({
 
   plugins: ["~/plugins/i18n-head.ts"],
 
-  content: {
-    watch: { enabled: false },
-  },
-
   imports: {
     dirs: ["./stores"],
   },
@@ -76,13 +72,12 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    lazy: true,
     strategy: "prefix_and_default",
     langDir: "./i18n",
     vueI18n: "./i18n.config.ts",
     baseUrl: "https://activist.org",
-    locales,
     defaultLocale: "en",
+    locales,
     customRoutes: "config",
     pages: {},
     detectBrowserLanguage: {
@@ -116,6 +111,11 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: "netlify-static",
+  },
+
+  plausible: {
+    // Prevent tracking on localhost.
+    ignoredHostnames: ["localhost"],
   },
 
   security: {
@@ -154,6 +154,4 @@ export default defineNuxtConfig({
       maxUploadFileRequestInBytes: 5000000,
     },
   },
-
-  compatibilityDate: "2025-03-12",
 });
